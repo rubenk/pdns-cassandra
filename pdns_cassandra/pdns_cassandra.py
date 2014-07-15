@@ -32,7 +32,6 @@ def get_or_404(query, *args):
 def lookup(qname, qtype):
     ''' do a basic query '''
 
-    app.logger.debug(request.headers)
     rrset = []
     if qtype == 'ANY':
         rrset = get_or_404(
@@ -71,8 +70,6 @@ def axfr(qname):
 @app.route('/getDomainInfo/<zone>')
 def get_domain_info(zone):
     ''' get info for a domain '''
-    result = 1
-    return jsonify(result=result)
     rows = get_or_404(
         'SELECT * FROM domains WHERE zone = %s LIMIT 1', (zone,)
     )
@@ -86,6 +83,7 @@ def get_domain_info(zone):
         notified_serial=1,
         last_check=0,
     )
+    return jsonify(result=result)
 
 
 @app.route('/superMasterBackend/<ip>/<domain>', methods=['POST'])
