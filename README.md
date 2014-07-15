@@ -8,7 +8,7 @@ Getting started
 
 Create Cassandra schema with cqlsh (tested with Cassandra 2.0.8):
 
-    CREATE KEYSPACE dns WITH replication = {
+    CREATE KEYSPACE powerdns WITH replication = {
         'class': 'SimpleStrategy',
         'replication_factor': '3'
     };
@@ -59,4 +59,4 @@ Configure the PowerDNS remote backend:
     
 Now start the application:
 
-    DEBUG=True KEYSPACE=dns CASSANDRA_NODES=10.0.0.1,10.0.0.2 python pdns_cassandra.py
+    DEBUG=True CASSANDRA_NODES=10.0.0.1,10.0.0.2 python pdns_cassandra.py
